@@ -16,26 +16,6 @@ group by location)
 order by Highest_Death_In_A_Day desc;
 #OUTCOME 1A: this returns the days the highest number of deaths occurred in each country in Africa
 
--- select d1.location, d1.date, cast(d1.new_deaths as signed) as Highest_Death_In_A_Day 
--- from covid_deaths_africa d1
--- inner join
--- (select location , max(cast(new_deaths as signed)) as Highest_Death_In_A_Day  from covid_deaths_africa d2
--- group by location)
--- on
--- d1.location = d2.location
--- and
--- cast(d1.new_deaths as signed) = cast(d2.new_deaths as signed)
--- order by Highest_Death_In_A_Day desc;
-
-
--- syntax for using joins
--- select location, date, new_deaths
--- from covid_deaths_africa
--- left join highest_death_per_day
--- on covid_deaths_africa.location = highest_death_per_day.location; 
--- -- and covid_deaths_africa.new_deaths = highest_death_per_day.Highest_death_per_day
-
-
 
 #INSIGHT 2: Countries with the highest number of deaths in Africa
 select location, max(cast(total_deaths as signed)) as Highest_Total_Number_Of_Deaths
@@ -152,79 +132,3 @@ and t1.date = t2.date
 )
 select *, Sum_of_People_vaccinated_per_Country/population*100 as Percentage_Vaccinated
 from Percentage;
-
-
-
-
--- select t1.location, t1.population, max(cast(t2.people_fully_vaccinated as signed)) as maximum_number_of_people_fully_vaccinated, max(cast(t2.people_fully_vaccinated as signed))/t1.population*100 as Percentage_fully_Vaccinated
--- from covid_deaths_africa t1
--- join covidvaccinations_africa t2
--- on t1.location = t2.location
--- and t1.date = t2.date
--- where cast(t2.people_fully_vaccinated as signed) in (select max(cast(people_fully_vaccinated as signed)) from covidvaccinations_africa where max(cast(t2.people_fully_vaccinated as signed)) = 0)   
--- group by t1.location
--- order by maximum_number_of_people_fully_vaccinated desc;
-
--- select all location, case when min(cast(people_fully_vaccinated as signed) = 0) then 0 else min(cast(people_fully_vaccinated as signed)) end
--- from covidvaccinations_africa;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#INSIGHT 4:
-#OUTCOME 4:
--- where location like "%Nigeria%"
